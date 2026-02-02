@@ -11,20 +11,21 @@
   <style>
     body { font-family: 'JetBrains Mono', monospace; }
     .road {
-      background: repeating-linear-gradient(
+      background: #4b5563;
+      background-image: repeating-linear-gradient(
         90deg,
-        #1a1a2e 0px,
-        #1a1a2e 40px,
-        #eab308 40px,
-        #eab308 50px
+        transparent 0,
+        transparent 38px,
+        #fbbf24 38px,
+        #fbbf24 46px
       );
     }
     .busik {
       animation: drive 4s linear infinite;
     }
     @keyframes drive {
-      0% { left: 0; }
-      100% { left: calc(100% - 3.5rem); }
+      0% { left: -20%; }
+      100% { left: 100%; }
     }
     .bus-container {
       overflow: hidden;
@@ -45,14 +46,14 @@
 
     <!-- Loader: бусік на дорозі -->
     <div class="bus-container road h-16 rounded-xl relative my-8">
-      <div class="bus busik absolute top-1/2 -translate-y-1/2 w-14 h-10 flex items-center justify-center" style="left: 0;">
-        <svg viewBox="0 0 64 32" class="w-14 h-10 text-amber-500" fill="currentColor">
-          <rect x="4" y="8" width="48" height="18" rx="3"/>
+      <div class="bus busik absolute top-1/2 -translate-y-1/2 flex items-center justify-center" style="left: 0; width: 8rem; height: 4rem;">
+        <svg viewBox="0 0 64 32" class="w-full h-full" fill="none">
+          <rect x="4" y="8" width="48" height="18" rx="3" fill="#3d5c1a"/>
           <rect x="8" y="12" width="8" height="8" fill="#1a1a2e"/>
           <rect x="20" y="12" width="8" height="8" fill="#1a1a2e"/>
           <circle cx="16" cy="26" r="4" fill="#1a1a2e"/>
-          <circle cx="48" cy="26" r="4" fill="#1a1a2e"/>
-          <text x="40" y="20" text-anchor="middle" fill="#1a1a2e" font-size="8" font-weight="bold">ТЦК</text>
+          <circle cx="44" cy="26" r="4" fill="#1a1a2e"/>
+          <text x="40" y="20" text-anchor="middle" fill="#fff" font-size="8" font-weight="bold">ТЦК</text>
         </svg>
       </div>
     </div>
