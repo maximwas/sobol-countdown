@@ -84,7 +84,12 @@
     </p>
 
     <!-- Фонова пісня: локальний MP3 — Допоможе ЗСУ (Chico & Qatoshi) -->
-    <audio id="bg-music" src="chico-qatoshi-dopomozhe-zsu_MKrcBMaq.mp3" loop preload="auto" autoplay></audio>
+    <audio id="bg-music" src="chico-qatoshi-dopomozhe-zsu_MKrcBMaq.mp3" loop preload="auto"></audio>
+  </div>
+
+  <!-- Для мобільного: один тап/клік запускає музику (браузери блокують autoplay без жесту) -->
+  <div id="music-overlay" class="fixed inset-0 bg-slate-900 flex items-center justify-center z-50 cursor-pointer" style="display: none;">
+    <p class="text-amber-400 text-center px-4 text-lg">Натисни будь-де</p>
   </div>
 
   <script>
@@ -114,6 +119,33 @@
 
     update();
     setInterval(update, 1000);
+
+    (function () {
+      var audio = document.getElementById('bg-music');
+      var overlay = document.getElementById('music-overlay');
+
+      function startMusic() {
+        audio.play().then(function () {
+          overlay.style.display = 'none';
+        }).catch(function () {
+          overlay.style.display = 'flex';
+        });
+      }
+
+      startMusic();
+
+      overlay.addEventListener('click', function () {
+        audio.play();
+        overlay.style.display = 'none';
+      });
+      overlay.addEventListener('touchend', function (e) {
+        e.preventDefault();
+        audio.play();
+        overlay.style.display = 'none';
+      }, { passive: false });
+
+      audio.addEventListener('ended', function () { this.currentTime = 0; this.play(); });
+    })();
   </script>
 </body>
 </html>
